@@ -1,7 +1,3 @@
-# wx_robot
-beego开发企业微信机器人消息定时推送配置
-
-
 ## 简介
 企业微信消息推送
 
@@ -81,4 +77,21 @@ quartz表达式
 |msg_type | varchar   |   消息类型：text,markdown   |
 
 
+> SQL
 
+    create table wx_robot_msg
+    (
+     id serial not null
+      constraint wx_robot_msg_pkey
+       primary key,
+     cron_tab varchar(100),
+     msg text,
+     key varchar(100),
+     status integer default 0,
+     msg_type varchar(20) default 'text'::character varying
+    )
+    ;
+    
+    create unique index wx_robot_msg_id_uindex
+     on wx_robot_msg (id)
+    ;
